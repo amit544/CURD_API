@@ -1,0 +1,25 @@
+version : "3.7"
+services  :
+  db : 
+    image : postgres
+    environment :
+        POSTGRES_PASSWORD: Amit1987
+        POSTGRES_USER: postgres
+        POSTGRES_DB : Nodejs 
+    ports :
+      - "5433:5432"
+  web:
+    container_name: amit_nodejs_container
+    image: amit_image/nodejs:2.0.0
+    build:
+      context: ./
+      target: debug
+    depends_on :
+      - "db"
+    links :
+      - "db"  
+    ports :
+      - "3004:3004"
+      - "9229:9229" 
+              
+       
